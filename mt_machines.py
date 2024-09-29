@@ -2,10 +2,11 @@ from com.MT.xxxtrigger50xxx.Devices.Transport import HumanTeleporter, Elevator, 
 from com.MT.xxxtrigger50xxx.Devices.Generators import ColdFusionReactor, PollutionGenerator, MoonlightPanel, SolarPanel, HeatExchanger, NuclearReactor, Centrifuge, CombustionGenerator, SteamEngine, PetroleumEngine, GeothermalGenerator, HeavySteamGenerator, TidalGenerator, WindTurbine
 from com.MT.xxxtrigger50xxx.Devices.Manufactoring import Infuser, Sifter, Crafter2, AutoTimer, Incinerator, ItemForge, BasicAssembler, AdvancedAssembler, OilRefinery
 from com.MT.xxxtrigger50xxx.Devices.Liquids import Pump, Boiler
-from com.MT.xxxtrigger50xxx.Devices.Producers import AutoCollector, AutoShearer, AutoMilker, AutoBreeder, DeepDrill, AutoPlucker, AutoPlanter, AutoLogger, AutoHarvester, AutoMiner, AutoButcher, ElectricFurnace, AutoBreaker, AutoPlacer
-from com.MT.xxxtrigger50xxx.Devices.Defense import AutoCauldron, AdvancedBowTurret, BowTurret, LaserTurret, BiterDetector, MineLayer, FloodLight
+from com.MT.xxxtrigger50xxx.Devices.Producers import AutoCauldron, AutoCollector, AutoShearer, AutoMilker, AutoBreeder, DeepDrill, AutoPlucker, AutoPlanter, AutoLogger, AutoHarvester, AutoMiner, AutoButcher, ElectricFurnace, AutoBreaker, AutoPlacer
+from com.MT.xxxtrigger50xxx.Devices.Defense import AdvancedBowTurret, BowTurret, LaserTurret, BiterDetector, MineLayer, FloodLight
 from com.MT.xxxtrigger50xxx.Devices.Utility import PowerReceiver, RedstoneEmitter, PowerTransmitter, PowerMeter, ProductionMonitor
-from com.MT.xxxtrigger50xxx.Devices import BatteryMonitor, Battery2, PowerPylon, PowerPylonMk2, PowerSubstation, OverDriver
+from com.MT.xxxtrigger50xxx.Devices import BatteryMonitor, Battery2, PowerPylon, PowerPylonMk2, PowerSubstation, OverDriver, Mover
+from com.MT.xxxtrigger50xxx.Technology import ResearchLab
 import mt_items
 
 
@@ -71,7 +72,9 @@ block_dict = {
     Roboport: (mt_items.roboport, "xz"),
     MineLayer: (mt_items.mine_layer, "DUNWES"),
     AutoCauldron: (mt_items.auto_cauldron, "xz"),
-    FloodLight: (mt_items.flood_light, "DUNWES")
+    FloodLight: (mt_items.flood_light, "DUNWES"),
+    Mover: (mt_items.mover, "DUNWES"),
+    ResearchLab: (mt_items.research_lab, "xz")
 }
 
 machine_list = list(block_dict.keys())

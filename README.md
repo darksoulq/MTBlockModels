@@ -53,7 +53,7 @@ Each machine has a unique CustomModelData value, allowing for distinct models. S
 | Power Transmitter        | 8041            | XZ       |
 | Item Forge               | 8042            | XZ       |
 | Battery                  | 8043            | XZ       |
-| Battery Monitor          | 8044            | DUXZ       |
+| Battery Monitor          | 8044            | XZ       |
 | Power Pylon              | 8045            | XZ       |
 | Power Pylon MK2          | 8046            | XZ       |
 | Power Substation         | 8047            | XZ       |
@@ -77,6 +77,10 @@ Each machine has a unique CustomModelData value, allowing for distinct models. S
 | Tidal Generator          | 8065            | XZ       |
 | Heavy Steam Generator          | 8066            | XZ       |
 | Roboport          | 8067            | XZ       |
+| Auto Cauldron          | 8067            | XZ       |
+| Mine Layer          | 8068            | DUXZ       |
+| Barrel Pump          | 8069           | XZ       |
+| Flood Light          | 8070            | DUXZ       |
 
 
 ### Note:

@@ -77,10 +77,11 @@ Each machine has a unique CustomModelData value, allowing for distinct models. S
 | Tidal Generator          | 8065            | XZ       |
 | Heavy Steam Generator          | 8066            | XZ       |
 | Roboport          | 8067            | XZ       |
-| Auto Cauldron          | 8067            | XZ       |
-| Mine Layer          | 8068            | DUXZ       |
-| Barrel Pump          | 8069           | XZ       |
-| Flood Light          | 8070            | DUXZ       |
+| Auto Cauldron          | 8068            | XZ       |
+| Mine Layer          | 8069            | DUXZ       |
+| Barrel Pump          | 8070           | XZ       |
+| Flood Light          | 8071            | DUXZ       |
+| Mover          | 8072            | DUXZ       |
 
 
 ### Note:

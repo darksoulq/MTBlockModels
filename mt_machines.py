@@ -3,7 +3,7 @@ from com.MT.xxxtrigger50xxx.Devices.Generators import ColdFusionReactor, Polluti
 from com.MT.xxxtrigger50xxx.Devices.Manufactoring import Infuser, Sifter, Crafter2, AutoTimer, Incinerator, ItemForge, BasicAssembler, AdvancedAssembler, OilRefinery
 from com.MT.xxxtrigger50xxx.Devices.Liquids import Pump, Boiler
 from com.MT.xxxtrigger50xxx.Devices.Producers import AutoCollector, AutoShearer, AutoMilker, AutoBreeder, DeepDrill, AutoPlucker, AutoPlanter, AutoLogger, AutoHarvester, AutoMiner, AutoButcher, ElectricFurnace, AutoBreaker, AutoPlacer
-from com.MT.xxxtrigger50xxx.Devices.Defense import AdvancedBowTurret, BowTurret, LaserTurret, BiterDetector
+from com.MT.xxxtrigger50xxx.Devices.Defense import AutoCauldron, AdvancedBowTurret, BowTurret, LaserTurret, BiterDetector, MineLayer, FloodLight
 from com.MT.xxxtrigger50xxx.Devices.Utility import PowerReceiver, RedstoneEmitter, PowerTransmitter, PowerMeter, ProductionMonitor
 from com.MT.xxxtrigger50xxx.Devices import BatteryMonitor, Battery2, PowerPylon, PowerPylonMk2, PowerSubstation, OverDriver
 import mt_items
@@ -45,7 +45,7 @@ block_dict = {
     PowerMeter: (mt_items.power_meter, "xz"),
     NuclearReactor: (mt_items.nuclear_reactor, "xz"),
     ItemForge: (mt_items.item_forge, "xz"),
-    BatteryMonitor: (mt_items.battery_monitor, "DUNWES"),
+    BatteryMonitor: (mt_items.battery_monitor, "xz"),
     Battery2: (mt_items.battery, "xz"),
     PowerPylon: (mt_items.power_pylon, "xz"),
     PowerPylonMk2: (mt_items.power_pylon_mk2, "xz"),
@@ -68,7 +68,10 @@ block_dict = {
     OverDriver: (mt_items.overdriver, "DUNWES"),
     ElectricFurnace: (mt_items.electric_furnace, "xz"),
     OilRefinery: (mt_items.oil_refinery, "xz"),
-    Roboport: (mt_items.roboport, "xz")
+    Roboport: (mt_items.roboport, "xz"),
+    MineLayer: (mt_items.mine_layer, "DUNWES"),
+    AutoCauldron: (mt_items.auto_cauldron, "xz"),
+    FloodLight: (mt_items.flood_light, "DUNWES")
 }
 
 machine_list = list(block_dict.keys())

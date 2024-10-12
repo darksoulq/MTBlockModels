@@ -2,14 +2,8 @@
 MTBlockModels adds custom model capability to Minetorio machines using Item Displays.
 
 ## Setup:
-1. Download the latest release of [PySpigot](https://www.spigotmc.org/resources/pyspigot.111006/) and place it in the `plugins/` directory.
-2. Download [Minetorio](https://www.spigotmc.org/resources/minetorio-%E2%9A%99%EF%B8%8Fautomation-%E2%9C%94%EF%B8%8F-autogather-%EF%B8%8F%E2%9C%94%EF%B8%8F-autosort-%E2%9C%94%EF%B8%8F-automove.112737/) (Tested with Minetorio 0.77 on 1.21.1), and also put it in ```plugins/```
-3. Run your Minecraft server or manually create the following directories:
-   - `PySpigot/scripts/`
-   - `PySpigot/python-libs/`
-4. Place the following Python files in the correct directories:
-   - `mt_items.py`, `mt_machines.py`, and `mtblockmain.py` in `PySpigot/python-libs/`
-   - `minetorio_block.py` in `PySpigot/scripts/`
+2. Download [Minetorio](https://www.spigotmc.org/resources/minetorio-%E2%9A%99%EF%B8%8Fautomation-%E2%9C%94%EF%B8%8F-autogather-%EF%B8%8F%E2%9C%94%EF%B8%8F-autosort-%E2%9C%94%EF%B8%8F-automove.112737/) (Tested with Minetorio 0.77 on 1.21.1), and put it in ```plugins/```
+3. Place the downloaded plugin (this) into ```plugins/```
 5. Download a compatible resource pack that utilizes this script for custom models.
 
 ## Available Machines and Custom Model Data:
@@ -82,8 +76,3 @@ Each machine has a unique CustomModelData value, allowing for distinct models. S
 | Barrel Pump          | 8070           | XZ       |
 | Flood Light          | 8071            | DUXZ       |
 | Mover          | 8072            | DUXZ       |
-
-
-### Note:
-
-First of all, i am not going to port this into a plugin!, if you so wish, you can certainly do it!, rather i encourage it, the code will be 90% same so it wont be difficult (I just dont have too much time and updating plugin and making it per version compatible would be a pain)

@@ -12,8 +12,11 @@ import java.util.Map;
 
 public class MTBlockModels extends JavaPlugin implements Listener {
 
+    private DisplayManager displayManager;
+
     @Override
     public void onEnable() {
+        this.displayManager = new DisplayManager(this);
         getServer().getPluginManager().registerEvents(this, this);
     }
 
@@ -30,7 +33,7 @@ public class MTBlockModels extends JavaPlugin implements Listener {
             if (device != null && machineClass.isInstance(device) || mover != null && machineClass.isInstance(mover)) {
                 Object item = MTMachines.blockDict.get(machineClass)[0];
                 String displayType = (String) MTMachines.blockDict.get(machineClass)[1];
-                DisplayManager.setupDisplay(event.getBlock().getLocation(), item, yaw, pitch, displayType);
+                displayManager.setupDisplay(event.getBlock().getLocation(), item, yaw, pitch, displayType);
                 break;
             }
         }
@@ -38,6 +41,10 @@ public class MTBlockModels extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        DisplayManager.destroyDisplay(event.getBlock().getLocation());
+        displayManager.destroyDisplay(event.getBlock().getLocation());
+    }
+
+    public DisplayManager getDisplayManager() {
+        return displayManager; // Return the instance of DisplayManager
     }
 }

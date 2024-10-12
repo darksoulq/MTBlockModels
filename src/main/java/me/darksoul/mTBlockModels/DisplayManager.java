@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Display.Brightness;
+import org.bukkit.util.Transformation;
 import org.bukkit.util.Vector;
 
 import java.io.File;
@@ -83,8 +84,12 @@ public class DisplayManager {
         entityMap.put(locationToString(location), itemDisplay.getUniqueId().toString());
         saveConfig();
 
+        Transformation itemTransformation = itemDisplay.getTransformation();
+        itemTransformation.getScale().set(1.01);
+
         // Adjust the item display
         itemDisplay.setItemStack((org.bukkit.inventory.ItemStack) item);
+        itemDisplay.setTransformation(itemTransformation);
         itemDisplay.setBrightness(new Brightness(0, 15));
 
         Vector directionVector = null;

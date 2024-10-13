@@ -5,6 +5,7 @@ MTBlockModels adds custom model capability to Minetorio machines using Item Disp
 2. Download [Minetorio](https://www.spigotmc.org/resources/minetorio-%E2%9A%99%EF%B8%8Fautomation-%E2%9C%94%EF%B8%8F-autogather-%EF%B8%8F%E2%9C%94%EF%B8%8F-autosort-%E2%9C%94%EF%B8%8F-automove.112737/) (Tested with Minetorio 0.77 on 1.21.1), and put it in ```plugins/```
 3. Place the downloaded plugin (this) into ```plugins/```
 5. Download a compatible resource pack that utilizes this plugin for custom models.
+6. [Optional] Do /mtmodels loadexisting to load models for already placed machines.
 
 ## Available Machines and Custom Model Data:
 Each machine has a unique CustomModelData value, allowing for distinct models. Some machines can rotate on the XZ axis (North, East, West, South), others on DUXZ (XZ + Down and UP)

@@ -6,17 +6,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class MTItems {
 
-    // Helper function to create an ItemStack with custom model data
-    private static ItemStack createCustomItem(Material material, int customModelData) {
-        ItemStack item = new ItemStack(material);
-        ItemMeta itemMeta = item.getItemMeta();
-        if (itemMeta != null) {
-            itemMeta.setCustomModelData(customModelData);
-            item.setItemMeta(itemMeta);
-        }
-        return item;
-    }
-
     // Create custom items
     public static final ItemStack HUMAN_TELEPORTER = createCustomItem(Material.PAPER, 8008);
     public static final ItemStack COLD_FUSION_REACTOR = createCustomItem(Material.PAPER, 8009);
@@ -83,4 +72,15 @@ public class MTItems {
     public static final ItemStack BARREL_PUMP = createCustomItem(Material.PAPER, 8070);
     public static final ItemStack FLOOD_LIGHT = createCustomItem(Material.PAPER, 8071);
     public static final ItemStack MOVER = createCustomItem(Material.PAPER, 8072);
+
+    // Helper function to create an ItemStack with custom model data
+    private static ItemStack createCustomItem(Material material, int customModelData) {
+        ItemStack item = new ItemStack(material);
+        ItemMeta itemMeta = item.getItemMeta();
+        if (itemMeta != null) {
+            itemMeta.setCustomModelData(customModelData);
+            item.setItemMeta(itemMeta);
+        }
+        return item;
+    }
 }

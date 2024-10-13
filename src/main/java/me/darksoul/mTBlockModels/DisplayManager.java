@@ -1,12 +1,12 @@
 package me.darksoul.mTBlockModels;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.Location;
+import org.bukkit.entity.Display.Brightness;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemDisplay;
-import org.bukkit.entity.Display.Brightness;
 import org.bukkit.util.Transformation;
 import org.bukkit.util.Vector;
 
@@ -80,7 +80,7 @@ public class DisplayManager {
     }
 
     public void setupDisplay(Location location, Object item, Float yaw, Float pitch, String type) {
-        ItemDisplay itemDisplay = (ItemDisplay) location.getWorld().spawn(location.add(0.5, 0.5, 0.5), ItemDisplay.class);
+        ItemDisplay itemDisplay = location.getWorld().spawn(location.add(0.5, 0.5, 0.5), ItemDisplay.class);
         entityMap.put(locationToString(location), itemDisplay.getUniqueId().toString());
         saveConfig();
 
@@ -94,16 +94,21 @@ public class DisplayManager {
 
         Vector directionVector = null;
         if ("xz".equals(type) || "DUNWES".equals(type)) {
-            directionVector = snapToCardinalDirection(yaw);
+            directionVector = snapToCardinalDirection(checkIfNullYaw(yaw));
+
             if ("DUNWES".equals(type)) {
+                // Handle up/down faces based on pitch
                 if (pitch != null && pitch > 45) {
-                    directionVector = new Vector(0, 1, 0);  // Face up
+                    directionVector = new Vector(0, 1, 0);  // Facing up
                 } else if (pitch != null && pitch < -45) {
-                    directionVector = new Vector(0, -1, 0);  // Face down
+                    directionVector = new Vector(0, -1, 0);  // Facing down
+                } else {
+                    // Use block face method to get the correct orientation for DUNWES
+                    directionVector = getBlockFaceDirection(location);
                 }
             }
         } else if ("static".equals(type)) {
-            directionVector = new Vector(0, 1, 0);  // Upwards by default
+            directionVector = new Vector(0, 1, 0);  // Default upwards direction
         }
 
         if (directionVector != null) {
@@ -112,6 +117,36 @@ public class DisplayManager {
             itemDisplay.teleport(displayLocation);
         }
     }
+
+    public Vector getBlockFaceDirection(Location location) {
+        org.bukkit.block.Block block = location.getBlock();
+
+        // Check if the block has directional data
+        if (block.getBlockData() instanceof org.bukkit.block.data.Directional blockData) {
+
+            // Get the block face direction and translate it into a Vector
+            switch (blockData.getFacing()) {
+                case NORTH:
+                    return new Vector(0, 0, -1);
+                case SOUTH:
+                    return new Vector(0, 0, 1);
+                case EAST:
+                    return new Vector(1, 0, 0);
+                case WEST:
+                    return new Vector(-1, 0, 0);
+                case UP:
+                    return new Vector(0, 1, 0);  // Upwards
+                case DOWN:
+                    return new Vector(0, -1, 0);  // Downwards
+                default:
+                    return new Vector(0, 1, 0);  // Fallback to up
+            }
+        } else {
+            // If the block is not directional, default to facing up
+            return new Vector(0, 1, 0);  // Upwards
+        }
+    }
+
 
     public void destroyDisplay(Location blockLocation) {
         String entityUUIDString = entityMap.get(locationToString(blockLocation));
@@ -130,5 +165,17 @@ public class DisplayManager {
 
     private String locationToString(Location location) {
         return location.getBlockX() + "," + location.getBlockY() + "," + location.getBlockZ();
+    }
+
+    private Float checkIfNullYaw(Float yaw) {
+        if (yaw == null) {
+            yaw = 0.0f;
+        }
+        return yaw;
+    }
+
+    public boolean doesDisplayExist(Location location) {
+        String entityUUIDString = entityMap.get(locationToString(location));
+        return entityUUIDString != null;
     }
 }

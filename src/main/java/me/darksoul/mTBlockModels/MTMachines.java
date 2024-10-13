@@ -1,27 +1,26 @@
 package me.darksoul.mTBlockModels;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.MT.xxxtrigger50xxx.Devices.Transport.HumanTeleporter;
-import com.MT.xxxtrigger50xxx.Devices.Transport.Elevator;
-import com.MT.xxxtrigger50xxx.Devices.Transport.ItemTeleporter;
-import com.MT.xxxtrigger50xxx.Devices.Transport.TrainStation;
-import com.MT.xxxtrigger50xxx.Devices.Transport.Roboport;
+import com.MT.xxxtrigger50xxx.Devices.*;
+import com.MT.xxxtrigger50xxx.Devices.Defense.*;
 import com.MT.xxxtrigger50xxx.Devices.Generators.*;
-import com.MT.xxxtrigger50xxx.Devices.Manufactoring.*;
+import com.MT.xxxtrigger50xxx.Devices.Liquids.BarrelPump;
 import com.MT.xxxtrigger50xxx.Devices.Liquids.Boiler;
 import com.MT.xxxtrigger50xxx.Devices.Liquids.Pump;
+import com.MT.xxxtrigger50xxx.Devices.Manufactoring.*;
 import com.MT.xxxtrigger50xxx.Devices.Producers.*;
-import com.MT.xxxtrigger50xxx.Devices.Defense.*;
+import com.MT.xxxtrigger50xxx.Devices.Transport.*;
 import com.MT.xxxtrigger50xxx.Devices.Utility.*;
-import com.MT.xxxtrigger50xxx.Devices.*;
 import com.MT.xxxtrigger50xxx.Technology.ResearchLab;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MTMachines {
 
     // HashMap to store machines and their corresponding items and settings
     public static final Map<Class<?>, Object[]> blockDict = new HashMap<>();
+    // Machine list for easy access
+    public static final Class<?>[] machineList = blockDict.keySet().toArray(new Class<?>[0]);
 
     static {
         blockDict.put(HumanTeleporter.class, new Object[]{MTItems.HUMAN_TELEPORTER, "xz"});
@@ -61,6 +60,7 @@ public class MTMachines {
         blockDict.put(ItemForge.class, new Object[]{MTItems.ITEM_FORGE, "xz"});
         blockDict.put(BatteryMonitor.class, new Object[]{MTItems.BATTERY_MONITOR, "xz"});
         blockDict.put(Battery2.class, new Object[]{MTItems.BATTERY, "xz"});
+        blockDict.put(BarrelPump.class, new Object[]{MTItems.BARREL_PUMP, "xz"});
         blockDict.put(PowerPylon.class, new Object[]{MTItems.POWER_PYLON, "xz"});
         blockDict.put(PowerPylonMk2.class, new Object[]{MTItems.POWER_PYLON_MK2, "xz"});
         blockDict.put(PowerSubstation.class, new Object[]{MTItems.POWER_SUBSTATION, "xz"});
@@ -90,6 +90,23 @@ public class MTMachines {
         blockDict.put(ResearchLab.class, new Object[]{MTItems.RESEARCH_LAB, "xz"});
     }
 
-    // Machine list for easy access
-    public static final Class<?>[] machineList = blockDict.keySet().toArray(new Class<?>[0]);
+    // Method to get device type based on the class of the device
+    public static String getDeviceType(Object device) {
+        for (Map.Entry<Class<?>, Object[]> entry : blockDict.entrySet()) {
+            if (entry.getKey().isInstance(device)) {
+                return (String) entry.getValue()[1]; // Return the type associated with the device class
+            }
+        }
+        return "unknown"; // Default if not found
+    }
+
+    // New method to get the item associated with the device
+    public static Object getDeviceItem(Object device) {
+        for (Map.Entry<Class<?>, Object[]> entry : blockDict.entrySet()) {
+            if (entry.getKey().isInstance(device)) {
+                return entry.getValue()[0]; // Return the item associated with the device class
+            }
+        }
+        return null; // Default if not found
+    }
 }

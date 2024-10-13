@@ -108,7 +108,6 @@ public class DisplayManager {
                     directionVector = getBlockFaceDirection(location);
                 }
             }
-            Bukkit.getLogger().log(Level.WARNING, "3 WORKS");
         } else if ("static".equals(type)) {
             directionVector = new Vector(0, 1, 0);  // Default upwards direction
         }

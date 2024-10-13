@@ -19,8 +19,6 @@ public class MTMachines {
 
     // HashMap to store machines and their corresponding items and settings
     public static final Map<Class<?>, Object[]> blockDict = new HashMap<>();
-    // Machine list for easy access
-    public static final Class<?>[] machineList = blockDict.keySet().toArray(new Class<?>[0]);
 
     static {
         blockDict.put(HumanTeleporter.class, new Object[]{MTItems.HUMAN_TELEPORTER, "xz"});
@@ -89,6 +87,8 @@ public class MTMachines {
         blockDict.put(Mover.class, new Object[]{MTItems.MOVER, "DUNWES"});
         blockDict.put(ResearchLab.class, new Object[]{MTItems.RESEARCH_LAB, "xz"});
     }
+    // Machine list for easy access
+    public static final Class<?>[] machineList = blockDict.keySet().toArray(new Class<?>[0]);
 
     // Method to get device type based on the class of the device
     public static String getDeviceType(Object device) {

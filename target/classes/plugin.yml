@@ -1,0 +1,15 @@
+name: MTBlockModels
+version: '1.1'
+main: me.darksoul.mTBlockModels.MTBlockModels
+api-version: '1.20'
+
+depend:
+  - Minetorio
+commands:
+  mtmodel:
+    description: Loads existing devices and spawns displays.
+    usage: /<command> loadexisting
+permissions:
+  mtblockmodels.loadexisting:
+    description: Allows the player to load existing devices.
+    default: op

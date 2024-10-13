@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class DisplayManager {
 
@@ -107,6 +108,7 @@ public class DisplayManager {
                     directionVector = getBlockFaceDirection(location);
                 }
             }
+            Bukkit.getLogger().log(Level.WARNING, "3 WORKS");
         } else if ("static".equals(type)) {
             directionVector = new Vector(0, 1, 0);  // Default upwards direction
         }
@@ -158,8 +160,6 @@ public class DisplayManager {
             }
             entityMap.remove(locationToString(blockLocation));
             saveConfig();
-        } else {
-            Bukkit.getLogger().warning("No entity found for location: " + locationToString(blockLocation));
         }
     }
 
@@ -170,8 +170,10 @@ public class DisplayManager {
     private Float checkIfNullYaw(Float yaw) {
         if (yaw == null) {
             yaw = 0.0f;
+            return yaw;
+        } else {
+            return yaw;
         }
-        return yaw;
     }
 
     public boolean doesDisplayExist(Location location) {

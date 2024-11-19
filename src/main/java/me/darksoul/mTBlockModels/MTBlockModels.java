@@ -11,6 +11,9 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Arrays;
+import java.util.logging.Level;
+
 public class MTBlockModels extends JavaPlugin implements Listener {
 
     private DisplayManager displayManager;
@@ -45,19 +48,6 @@ public class MTBlockModels extends JavaPlugin implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         displayManager.destroyDisplay(event.getBlock().getLocation(), event.getPlayer());
-    }
-
-    public void onPlayerInteract(PlayerInteractEvent e) {
-        Player player = e.getPlayer();
-        if (e.getClickedBlock() != null) {
-            Location loc = e.getClickedBlock().getLocation();
-            Device device = Device.getDevice(loc);
-            Mover mover = Mover.getMover(loc);
-
-            if (device != null || mover != null) {
-                displayManager.disguiseMachine(player, loc);
-            }
-        }
     }
 
     public DisplayManager getDisplayManager() {

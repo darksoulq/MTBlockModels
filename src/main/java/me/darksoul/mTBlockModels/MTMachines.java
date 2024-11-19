@@ -19,8 +19,6 @@ public class MTMachines {
 
     // HashMap to store machines and their corresponding items and settings
     public static final Map<Class<?>, Object[]> blockDict = new HashMap<>();
-    // Machine list for easy access
-    public static final Class<?>[] machineList = blockDict.keySet().toArray(new Class<?>[0]);
 
     static {
         blockDict.put(HumanTeleporter.class, new Object[]{MTItems.HUMAN_TELEPORTER, "xz"});
@@ -97,23 +95,24 @@ public class MTMachines {
         blockDict.put(ArtilleryDevice.class, new Object[]{MTItems.ARTILLERY_DEVICE, "xz"});
     }
 
-    // Method to get device type based on the class of the device
+    // Machine list for easy access
+    public static final Class<?>[] machineList = blockDict.keySet().toArray(new Class<?>[0]);
+
     public static String getDeviceType(Object device) {
         for (Map.Entry<Class<?>, Object[]> entry : blockDict.entrySet()) {
             if (entry.getKey().isInstance(device)) {
-                return (String) entry.getValue()[1]; // Return the type associated with the device class
+                return (String) entry.getValue()[1];
             }
         }
-        return "unknown"; // Default if not found
+        return "unknown";
     }
 
-    // New method to get the item associated with the device
     public static Object getDeviceItem(Object device) {
         for (Map.Entry<Class<?>, Object[]> entry : blockDict.entrySet()) {
             if (entry.getKey().isInstance(device)) {
-                return entry.getValue()[0]; // Return the item associated with the device class
+                return entry.getValue()[0];
             }
         }
-        return null; // Default if not found
+        return null;
     }
 }

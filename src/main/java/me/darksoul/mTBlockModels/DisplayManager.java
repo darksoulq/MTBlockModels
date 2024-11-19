@@ -2,7 +2,6 @@ package me.darksoul.mTBlockModels;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -19,45 +18,33 @@ import java.util.*;
 
 public class DisplayManager {
 
-    private final MTBlockModels plugin; // Reference to the main plugin class
+    private final MTBlockModels plugin;
     private final Map<String, String> entityMap = new HashMap<>();
     private File configFile;
     private FileConfiguration config;
     private final List<Location> locationList;
 
     public DisplayManager(MTBlockModels plugin) {
-        this.plugin = plugin; // Store reference to the plugin instance
+        this.plugin = plugin;
         createConfigFolder();
-        loadConfig(); // Load the config when the manager is created
+        loadConfig();
         locationList = getAllMachineLocations(Bukkit.getWorld("world"));
     }
 
-    public void disguiseMachinesInChunk(Player player) {
-        for (Location location : locationList) {
-            player.sendBlockChange(location, Material.BARRIER.createBlockData());
-        }
-    }
-
-    public void disguiseMachine(Player player, Location loc) {
-        player.sendBlockChange(loc, Material.BARRIER.createBlockData());
-    }
-
     public List<Location> getAllMachineLocations(World world) {
-        List<Location> locations = new ArrayList<>(); // Initialize the ArrayList for Location objects
+        List<Location> locations = new ArrayList<>();
 
-        Set<String> keys = entityMap.keySet(); // Get all keys from entityMap
+        Set<String> keys = entityMap.keySet();
         for (String key : keys) {
-            // Clean the key by removing parentheses and splitting by comma
             String cleanedKey = key.replace("(", "").replace(")", "").trim(); // Remove ( and )
-            String[] parts = cleanedKey.split(","); // Split by comma
+            String[] parts = cleanedKey.split(",");
 
-            if (parts.length == 3) { // Ensure there are exactly three parts
+            if (parts.length == 3) {
                 try {
                     int x = Integer.parseInt(parts[0].trim());
                     int y = Integer.parseInt(parts[1].trim());
                     int z = Integer.parseInt(parts[2].trim());
 
-                    // Create a Location object and add it to the list
                     Location location = new Location(world, x, y, z);
                     locations.add(location);
                 } catch (NumberFormatException e) {
@@ -65,18 +52,18 @@ public class DisplayManager {
             }
         }
 
-        return locations; // Return the list of Location objects
+        return locations;
     }
 
     private void createConfigFolder() {
         File dataFolder = plugin.getDataFolder();
         if (!dataFolder.exists()) {
-            dataFolder.mkdirs(); // Create the folder if it doesn't exist
+            dataFolder.mkdirs();
         }
         configFile = new File(dataFolder, "mtentitydata.yml");
         if (!configFile.exists()) {
             try {
-                configFile.createNewFile(); // Create the config file if it doesn't exist
+                configFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -127,7 +114,6 @@ public class DisplayManager {
         Transformation itemTransformation = itemDisplay.getTransformation();
         itemTransformation.getScale().set(1.01);
 
-        // Adjust the item display
         itemDisplay.setItemStack((org.bukkit.inventory.ItemStack) item);
         itemDisplay.setTransformation(itemTransformation);
         itemDisplay.setBrightness(new Brightness(0, 15));
@@ -137,18 +123,16 @@ public class DisplayManager {
             directionVector = snapToCardinalDirection(checkIfNullYaw(yaw));
 
             if ("DUNWES".equals(type)) {
-                // Handle up/down faces based on pitch
                 if (pitch != null && pitch > 45) {
-                    directionVector = new Vector(0, 1, 0);  // Facing up
+                    directionVector = new Vector(0, 1, 0);
                 } else if (pitch != null && pitch < -45) {
-                    directionVector = new Vector(0, -1, 0);  // Facing down
+                    directionVector = new Vector(0, -1, 0);
                 } else {
-                    // Use block face method to get the correct orientation for DUNWES
                     directionVector = getBlockFaceDirection(location);
                 }
             }
         } else if ("static".equals(type)) {
-            directionVector = new Vector(0, 1, 0);  // Default upwards direction
+            directionVector = new Vector(0, 1, 0);
         }
 
         if (directionVector != null) {
@@ -161,10 +145,8 @@ public class DisplayManager {
     public Vector getBlockFaceDirection(Location location) {
         org.bukkit.block.Block block = location.getBlock();
 
-        // Check if the block has directional data
         if (block.getBlockData() instanceof org.bukkit.block.data.Directional blockData) {
 
-            // Get the block face direction and translate it into a Vector
             switch (blockData.getFacing()) {
                 case NORTH:
                     return new Vector(0, 0, -1);
@@ -175,14 +157,13 @@ public class DisplayManager {
                 case WEST:
                     return new Vector(-1, 0, 0);
                 case UP:
-                    return new Vector(0, 1, 0);  // Upwards
+                    return new Vector(0, 1, 0);
                 case DOWN:
-                    return new Vector(0, -1, 0);  // Downwards
+                    return new Vector(0, -1, 0);
                 default:
-                    return new Vector(0, 1, 0);  // Fallback to up
+                    return new Vector(0, 1, 0);
             }
         } else {
-            // If the block is not directional, default to facing up
             return new Vector(0, 1, 0);  // Upwards
         }
     }

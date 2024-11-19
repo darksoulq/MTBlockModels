@@ -5,6 +5,7 @@ api-version: '1.20'
 
 depend:
   - Minetorio
+  - ProtocolLib
 commands:
   mtmodel:
     description: Loads existing devices and spawns displays.

@@ -19,6 +19,8 @@ public class MTMachines {
 
     // HashMap to store machines and their corresponding items and settings
     public static final Map<Class<?>, Object[]> blockDict = new HashMap<>();
+    // Machine list for easy access
+    public static final Class<?>[] machineList = blockDict.keySet().toArray(new Class<?>[0]);
 
     static {
         blockDict.put(HumanTeleporter.class, new Object[]{MTItems.HUMAN_TELEPORTER, "xz"});
@@ -86,9 +88,14 @@ public class MTMachines {
         blockDict.put(FloodLight.class, new Object[]{MTItems.FLOOD_LIGHT, "DUNWES"});
         blockDict.put(Mover.class, new Object[]{MTItems.MOVER, "DUNWES"});
         blockDict.put(ResearchLab.class, new Object[]{MTItems.RESEARCH_LAB, "xz"});
+        blockDict.put(Crusher.class, new Object[]{MTItems.CRUSHER, "xz"});
+        blockDict.put(CrankGenerator.class, new Object[]{MTItems.CRANK_GENERATOR, "DUNWES"});
+        blockDict.put(ChunkLoader.class, new Object[]{MTItems.CHUNK_LOADER, "xz"});
+        blockDict.put(MobBlocker.class, new Object[]{MTItems.MOB_BLOCKER, "xz"});
+        blockDict.put(RocketSilo.class, new Object[]{MTItems.ROCKET_SILO, "xz"});
+        blockDict.put(LightningGenerator.class, new Object[]{MTItems.LIGHTNING_GENERATOR, "DUNWES"});
+        blockDict.put(ArtilleryDevice.class, new Object[]{MTItems.ARTILLERY_DEVICE, "xz"});
     }
-    // Machine list for easy access
-    public static final Class<?>[] machineList = blockDict.keySet().toArray(new Class<?>[0]);
 
     // Method to get device type based on the class of the device
     public static String getDeviceType(Object device) {

@@ -2,20 +2,20 @@ package me.darksoul.mTBlockModels;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Display.Brightness;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemDisplay;
+import org.bukkit.entity.Player;
 import org.bukkit.util.Transformation;
 import org.bukkit.util.Vector;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import java.util.logging.Level;
+import java.util.*;
 
 public class DisplayManager {
 
@@ -23,11 +23,49 @@ public class DisplayManager {
     private final Map<String, String> entityMap = new HashMap<>();
     private File configFile;
     private FileConfiguration config;
+    private final List<Location> locationList;
 
     public DisplayManager(MTBlockModels plugin) {
         this.plugin = plugin; // Store reference to the plugin instance
         createConfigFolder();
         loadConfig(); // Load the config when the manager is created
+        locationList = getAllMachineLocations(Bukkit.getWorld("world"));
+    }
+
+    public void disguiseMachinesInChunk(Player player) {
+        for (Location location : locationList) {
+            player.sendBlockChange(location, Material.BARRIER.createBlockData());
+        }
+    }
+
+    public void disguiseMachine(Player player, Location loc) {
+        player.sendBlockChange(loc, Material.BARRIER.createBlockData());
+    }
+
+    public List<Location> getAllMachineLocations(World world) {
+        List<Location> locations = new ArrayList<>(); // Initialize the ArrayList for Location objects
+
+        Set<String> keys = entityMap.keySet(); // Get all keys from entityMap
+        for (String key : keys) {
+            // Clean the key by removing parentheses and splitting by comma
+            String cleanedKey = key.replace("(", "").replace(")", "").trim(); // Remove ( and )
+            String[] parts = cleanedKey.split(","); // Split by comma
+
+            if (parts.length == 3) { // Ensure there are exactly three parts
+                try {
+                    int x = Integer.parseInt(parts[0].trim());
+                    int y = Integer.parseInt(parts[1].trim());
+                    int z = Integer.parseInt(parts[2].trim());
+
+                    // Create a Location object and add it to the list
+                    Location location = new Location(world, x, y, z);
+                    locations.add(location);
+                } catch (NumberFormatException e) {
+                }
+            }
+        }
+
+        return locations; // Return the list of Location objects
     }
 
     private void createConfigFolder() {
@@ -80,7 +118,8 @@ public class DisplayManager {
         }
     }
 
-    public void setupDisplay(Location location, Object item, Float yaw, Float pitch, String type) {
+    public void setupDisplay(Location location, Object item, Float yaw, Float pitch, String type, Player player) {
+        this.locationList.add(location);
         ItemDisplay itemDisplay = location.getWorld().spawn(location.add(0.5, 0.5, 0.5), ItemDisplay.class);
         entityMap.put(locationToString(location), itemDisplay.getUniqueId().toString());
         saveConfig();
@@ -149,7 +188,8 @@ public class DisplayManager {
     }
 
 
-    public void destroyDisplay(Location blockLocation) {
+    public void destroyDisplay(Location blockLocation, Player player) {
+        this.locationList.add(blockLocation);
         String entityUUIDString = entityMap.get(locationToString(blockLocation));
         if (entityUUIDString != null) {
             UUID entityUUID = UUID.fromString(entityUUIDString);

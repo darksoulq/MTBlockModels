@@ -2,27 +2,26 @@ package me.darksoul.mTBlockModels;
 
 import com.MT.xxxtrigger50xxx.Devices.Device;
 import com.MT.xxxtrigger50xxx.Devices.Mover;
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
+import me.darksoul.mTBlockModels.entity.DisplayManager;
+import me.darksoul.mTBlockModels.entity.ExistingLoader;
+import me.darksoul.mTBlockModels.internals.MTMachines;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Arrays;
-import java.util.logging.Level;
 
 public class MTBlockModels extends JavaPlugin implements Listener {
 
     private DisplayManager displayManager;
     private ExistingLoader existingLoader;
+    private static MTBlockModels instance;
 
     @Override
     public void onEnable() {
+        instance = this;
         this.displayManager = new DisplayManager(this);
-        this.existingLoader = new ExistingLoader(this, displayManager);
+        this.existingLoader = new ExistingLoader(displayManager);
         getServer().getPluginManager().registerEvents(this, this);
     }
 
@@ -49,8 +48,10 @@ public class MTBlockModels extends JavaPlugin implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         displayManager.destroyDisplay(event.getBlock().getLocation(), event.getPlayer());
     }
-
     public DisplayManager getDisplayManager() {
         return displayManager; // Return the instance of DisplayManager
+    }
+    public static MTBlockModels getInstance() {
+        return instance;
     }
 }

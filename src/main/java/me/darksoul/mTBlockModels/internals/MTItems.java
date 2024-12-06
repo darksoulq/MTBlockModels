@@ -1,4 +1,4 @@
-package me.darksoul.mTBlockModels;
+package me.darksoul.mTBlockModels.internals;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -71,13 +71,11 @@ public class MTItems {
     public static final ItemStack BARREL_PUMP = createCustomItem(Material.PAPER, 8070);
     public static final ItemStack FLOOD_LIGHT = createCustomItem(Material.PAPER, 8071);
     public static final ItemStack MOVER = createCustomItem(Material.PAPER, 8072);
-    public static final ItemStack CRANK_GENERATOR = createCustomItem(Material.PAPER, 8073);
-    public static final ItemStack LIGHTNING_GENERATOR = createCustomItem(Material.PAPER, 8074);
-    public static final ItemStack MOB_BLOCKER = createCustomItem(Material.PAPER, 8075);
-    public static final ItemStack CRUSHER = createCustomItem(Material.PAPER, 8076);
-    public static final ItemStack ROCKET_SILO = createCustomItem(Material.PAPER, 8077);
-    public static final ItemStack CHUNK_LOADER = createCustomItem(Material.PAPER, 8078);
-    public static final ItemStack ARTILLERY_DEVICE = createCustomItem(Material.PAPER, 8079);
+    public static final ItemStack MOB_BLOCKER = createCustomItem(Material.PAPER, 8073);
+    public static final ItemStack CRUSHER = createCustomItem(Material.PAPER, 8074);
+    public static final ItemStack ROCKET_SILO = createCustomItem(Material.PAPER, 8075);
+    public static final ItemStack CHUNK_LOADER = createCustomItem(Material.PAPER, 8076);
+    public static final ItemStack ARTILLERY_DEVICE = createCustomItem(Material.PAPER, 8077);
 
     private static ItemStack createCustomItem(Material material, int customModelData) {
         ItemStack item = new ItemStack(material);

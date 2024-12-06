@@ -1,5 +1,6 @@
-package me.darksoul.mTBlockModels;
+package me.darksoul.mTBlockModels.entity;
 
+import me.darksoul.mTBlockModels.MTBlockModels;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;

@@ -1,6 +1,6 @@
-me\darksoul\mTBlockModels\MTMachines.class
+me\darksoul\mTBlockModels\internals\MTItems.class
+me\darksoul\mTBlockModels\internals\MTMachines.class
+me\darksoul\mTBlockModels\entity\DisplayManager$1.class
+me\darksoul\mTBlockModels\entity\ExistingLoader.class
+me\darksoul\mTBlockModels\entity\DisplayManager.class
 me\darksoul\mTBlockModels\MTBlockModels.class
-me\darksoul\mTBlockModels\ExistingLoader.class
-me\darksoul\mTBlockModels\DisplayManager.class
-me\darksoul\mTBlockModels\MTItems.class
-me\darksoul\mTBlockModels\DisplayManager$1.class

@@ -1,4 +1,4 @@
-package me.darksoul.mTBlockModels;
+package me.darksoul.mTBlockModels.internals;
 
 import com.MT.xxxtrigger50xxx.Devices.*;
 import com.MT.xxxtrigger50xxx.Devices.Defense.*;
@@ -87,15 +87,12 @@ public class MTMachines {
         blockDict.put(Mover.class, new Object[]{MTItems.MOVER, "DUNWES"});
         blockDict.put(ResearchLab.class, new Object[]{MTItems.RESEARCH_LAB, "xz"});
         blockDict.put(Crusher.class, new Object[]{MTItems.CRUSHER, "xz"});
-        blockDict.put(CrankGenerator.class, new Object[]{MTItems.CRANK_GENERATOR, "DUNWES"});
         blockDict.put(ChunkLoader.class, new Object[]{MTItems.CHUNK_LOADER, "xz"});
         blockDict.put(MobBlocker.class, new Object[]{MTItems.MOB_BLOCKER, "xz"});
         blockDict.put(RocketSilo.class, new Object[]{MTItems.ROCKET_SILO, "xz"});
-        blockDict.put(LightningGenerator.class, new Object[]{MTItems.LIGHTNING_GENERATOR, "DUNWES"});
         blockDict.put(ArtilleryDevice.class, new Object[]{MTItems.ARTILLERY_DEVICE, "xz"});
     }
 
-    // Machine list for easy access
     public static final Class<?>[] machineList = blockDict.keySet().toArray(new Class<?>[0]);
 
     public static String getDeviceType(Object device) {
@@ -106,7 +103,6 @@ public class MTMachines {
         }
         return "unknown";
     }
-
     public static Object getDeviceItem(Object device) {
         for (Map.Entry<Class<?>, Object[]> entry : blockDict.entrySet()) {
             if (entry.getKey().isInstance(device)) {

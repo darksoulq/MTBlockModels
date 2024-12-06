@@ -1,7 +1,9 @@
-package me.darksoul.mTBlockModels;
+package me.darksoul.mTBlockModels.entity;
 
 import com.MT.xxxtrigger50xxx.Devices.Device;
 import com.MT.xxxtrigger50xxx.Devices.Mover;
+import me.darksoul.mTBlockModels.MTBlockModels;
+import me.darksoul.mTBlockModels.internals.MTMachines;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -13,9 +15,9 @@ public class ExistingLoader implements CommandExecutor {
 
     private final DisplayManager displayManager;
 
-    public ExistingLoader(MTBlockModels plugin, DisplayManager displayManager) {
+    public ExistingLoader(DisplayManager displayManager) {
         this.displayManager = displayManager;
-        plugin.getCommand("mtmodel").setExecutor(this); // Register the command
+        MTBlockModels.getInstance().getCommand("mtmodel").setExecutor(this); // Register the command
     }
 
     @Override
@@ -40,7 +42,7 @@ public class ExistingLoader implements CommandExecutor {
         // Process all Movers
         for (Mover mover : Mover.getMovers()) {
             Location moverLocation = mover.getLocation();
-            handleDisplaySetup(moverLocation, MTMachines.getDeviceItem(mover), MTMachines.getDeviceType(mover), player); // Assuming MTMachines has similar methods for Mover
+            handleDisplaySetup(moverLocation, MTMachines.getDeviceItem(mover), MTMachines.getDeviceType(mover), player);
         }
     }
 
